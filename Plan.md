@@ -33,3 +33,5 @@
 Автомтизация тестирования: 16ч
 Возможные риски: 
 * Прекращение работы сервера
+### [Check list](https://docs.google.com/spreadsheets/d/1qajQ056GaBFjruRiRtSANdQNV7Q8K-oxGs8eTWTkhZk/edit?usp=sharing)
+### [Cases](https://docs.google.com/spreadsheets/d/17DhVmot2S9a4lIAefsWGGGGY_Zzn1mBQ7uYqcWYUb0s/edit?usp=sharing)

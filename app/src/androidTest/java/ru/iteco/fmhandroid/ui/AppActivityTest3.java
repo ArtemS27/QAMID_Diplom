@@ -5,12 +5,10 @@ import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.action.ViewActions.click;
 import static androidx.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static androidx.test.espresso.action.ViewActions.replaceText;
-import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
-import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.is;
@@ -27,7 +25,6 @@ import androidx.test.filters.LargeTest;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
-import org.hamcrest.core.IsInstanceOf;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,14 +33,14 @@ import ru.iteco.fmhandroid.R;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class AppActivityTest {
+public class AppActivityTest3 {
 
     @Rule
     public ActivityScenarioRule<AppActivity> mActivityScenarioRule =
             new ActivityScenarioRule<>(AppActivity.class);
 
     @Test
-    public void appActivityTest() {
+    public void appActivityTest3() {
         ViewInteraction textInputEditText = onView(
                 allOf(childAtPosition(
                                 childAtPosition(
@@ -72,12 +69,37 @@ public class AppActivityTest {
                         isDisplayed()));
         materialButton.perform(click());
 
-        ViewInteraction imageView = onView(
-                allOf(withId(R.id.trademark_image_view),
-                        withParent(allOf(withId(R.id.container_custom_app_bar_include_on_fragment_main),
-                                withParent(IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class)))),
+        ViewInteraction appCompatImageButton = onView(
+                allOf(withId(R.id.main_menu_image_button), withContentDescription("Main menu"),
+                        childAtPosition(
+                                allOf(withId(R.id.container_custom_app_bar_include_on_fragment_main),
+                                        childAtPosition(
+                                                withClassName(is("android.widget.LinearLayout")),
+                                                0)),
+                                0),
                         isDisplayed()));
-        imageView.check(matches(isDisplayed()));
+        appCompatImageButton.perform(click());
+
+        ViewInteraction materialTextView = onView(
+                allOf(withId(android.R.id.title), withText("About"),
+                        childAtPosition(
+                                childAtPosition(
+                                        withId(android.R.id.content),
+                                        0),
+                                0),
+                        isDisplayed()));
+        materialTextView.perform(click());
+
+        ViewInteraction appCompatImageButton2 = onView(
+                allOf(withId(R.id.about_back_image_button),
+                        childAtPosition(
+                                allOf(withId(R.id.container_custom_app_bar_include_on_fragment_about),
+                                        childAtPosition(
+                                                withClassName(is("android.widget.LinearLayout")),
+                                                0)),
+                                1),
+                        isDisplayed()));
+        appCompatImageButton2.perform(click());
     }
 
     private static Matcher<View> childAtPosition(

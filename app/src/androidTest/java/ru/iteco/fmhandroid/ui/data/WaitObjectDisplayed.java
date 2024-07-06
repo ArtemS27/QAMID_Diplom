@@ -58,6 +58,6 @@ public class WaitObjectDisplayed {
     }
 
     public static void waitId(int id) {
-        onView(isRoot()).perform(waitForView(id, 7000));
+        onView(isRoot()).perform(waitForView(id, 5000));
     }
 }

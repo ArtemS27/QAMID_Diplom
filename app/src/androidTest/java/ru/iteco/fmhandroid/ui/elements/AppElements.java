@@ -2,10 +2,13 @@ package ru.iteco.fmhandroid.ui.elements;
 
 import static androidx.test.espresso.Espresso.onView;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
+import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.is;
 
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +19,7 @@ import androidx.test.espresso.ViewInteraction;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
+import org.hamcrest.core.IsInstanceOf;
 
 import ru.iteco.fmhandroid.R;
 
@@ -25,6 +29,56 @@ public class AppElements {
     public ViewInteraction authorizationButton = onView(withId(R.id.authorization_image_button));
     public ViewInteraction logOutButton = onView(
             allOf(withId(android.R.id.title), withText("Log out"),
+                    childAtPosition(
+                            childAtPosition(
+                                    withId(android.R.id.content),
+                                    0),
+                            0),
+                    isDisplayed()));
+
+    public ViewInteraction mainMenuButton = onView(
+            withId(R.id.main_menu_image_button));
+
+    public ViewInteraction newsButton = onView(
+            allOf(withId(android.R.id.title), withText("News"),
+                    childAtPosition(
+                            childAtPosition(
+                                    withId(android.R.id.content),
+                                    0),
+                            0),
+                    isDisplayed()));
+
+    public ViewInteraction textNewsView = onView(
+            allOf(withText("News"),
+                    withParent(withParent(withId(R.id.container_list_news_include))),
+                    isDisplayed()));
+
+    public ViewInteraction aboutButton = onView(
+            allOf(withId(android.R.id.title), withText("About"),
+                    childAtPosition(
+                            childAtPosition(
+                                    withId(android.R.id.content),
+                                    0),
+                            0),
+                    isDisplayed()));
+
+    public ViewInteraction aboutTitle = onView(
+            allOf(withId(R.id.about_version_title_text_view), withText("Version:"),
+                    withParent(withParent(IsInstanceOf.<View>instanceOf(android.widget.LinearLayout.class))),
+                    isDisplayed()));
+
+    public ViewInteraction aboutBackButton = onView(
+            allOf(withId(R.id.about_back_image_button),
+                    childAtPosition(
+                            allOf(withId(R.id.container_custom_app_bar_include_on_fragment_about),
+                                    childAtPosition(
+                                            withClassName(is("android.widget.LinearLayout")),
+                                            0)),
+                            1),
+                    isDisplayed()));
+
+    public ViewInteraction mainButton = onView(
+            allOf(withId(android.R.id.title), withText("Main"),
                     childAtPosition(
                             childAtPosition(
                                     withId(android.R.id.content),

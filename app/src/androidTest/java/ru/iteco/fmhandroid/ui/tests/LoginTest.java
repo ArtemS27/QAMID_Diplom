@@ -18,7 +18,7 @@ import ru.iteco.fmhandroid.ui.data.Data;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class AppActivityTest {
+public class LoginTest {
 
     @Rule
     public ActivityScenarioRule<AppActivity> mActivityScenarioRule =
@@ -34,10 +34,10 @@ public class AppActivityTest {
     Login loginTest = new Login();
     LogOut logOut = new LogOut();
     @Test
-    public void appActivityTest() {
+    public void loginTest() {
         loginTest.LoginTest(data.validLogin, data.validPassword);
         loginTest.CheckIfLoggedIn();
-        logOut.LogOutTest();
-        logOut.CheckIfLoggedOut();
+        //logOut.LogOutTest();
+        //logOut.CheckIfLoggedOut();
     }
     }

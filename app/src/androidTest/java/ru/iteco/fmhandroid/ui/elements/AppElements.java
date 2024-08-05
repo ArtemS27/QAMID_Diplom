@@ -1,13 +1,18 @@
 package ru.iteco.fmhandroid.ui.elements;
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.matcher.ViewMatchers.isClickable;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static androidx.test.espresso.matcher.ViewMatchers.isFocusable;
+import static androidx.test.espresso.matcher.ViewMatchers.isNotClickable;
+import static androidx.test.espresso.matcher.ViewMatchers.isNotFocusable;
 import static androidx.test.espresso.matcher.ViewMatchers.withClassName;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withParent;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 import static org.hamcrest.Matchers.allOf;
+import static org.hamcrest.Matchers.anyOf;
 import static org.hamcrest.Matchers.is;
 
 import android.view.View;
@@ -25,6 +30,9 @@ import ru.iteco.fmhandroid.R;
 
 public class AppElements {
     public int authorizationButtonId = R.id.authorization_image_button;
+
+    public ViewInteraction ourMissionButton = onView(withId(R.id.our_mission_image_button));
+    public ViewInteraction ourMissionTitle = onView(withId(R.id.our_mission_title_text_view));
 
     public ViewInteraction authorizationButton = onView(withId(R.id.authorization_image_button));
     public ViewInteraction logOutButton = onView(
@@ -85,6 +93,15 @@ public class AppElements {
                                     0),
                             0),
                     isDisplayed()));
+
+    public ViewInteraction newsExpandingButton = onView(
+            allOf(withId(R.id.news_list_recycler_view),
+                    childAtPosition(
+                            withId(R.id.all_news_cards_block_constraint_layout),
+                            0)));
+
+    public ViewInteraction newsTextElement = onView(
+            anyOf(withId(R.id.news_item_description_text_view)));
 
     private static Matcher<View> childAtPosition(
             final Matcher<View> parentMatcher, final int position) {

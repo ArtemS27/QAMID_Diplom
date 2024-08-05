@@ -1,6 +1,7 @@
 package ru.iteco.fmhandroid.ui.data;
 
 import static androidx.test.espresso.Espresso.onView;
+import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.isRoot;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 
@@ -17,7 +18,7 @@ import org.hamcrest.Matcher;
 import java.util.concurrent.TimeoutException;
 
 public class WaitObjectDisplayed {
-    public static ViewAction waitForView(int viewId, long timeout){
+    public static ViewAction waitDisplayed(int viewId, long millis){
         return new ViewAction() {
             @Override
             public Matcher<View> getConstraints() {
@@ -26,19 +27,20 @@ public class WaitObjectDisplayed {
 
             @Override
             public String getDescription() {
-                return "wait for a specific view wit id <" + viewId + "> during " + timeout + " millis.";
+                return "wait for a specific view wit id <" + viewId + "> during " + millis + " millis.";
             }
 
             @Override
             public void perform(final UiController uiController, final View view) {
                 uiController.loopMainThreadUntilIdle();
                 final long startTime = System.currentTimeMillis();
-                final long endTime = startTime + timeout;
-                final Matcher<View> viewMatcher = withId(viewId);
+                final long endTime = startTime + millis;
+                final Matcher<View> matchId = withId(viewId);
+                final Matcher<View> matchDisplayed = isDisplayed();
 
                 do {
                     for (View child : TreeIterables.breadthFirstViewTraversal(view)) {
-                        if(viewMatcher.matches(child)){
+                        if(matchId.matches(child) && matchDisplayed.matches(child) ){
                             return;
                         }
                     }
@@ -58,6 +60,6 @@ public class WaitObjectDisplayed {
     }
 
     public static void waitId(int id) {
-        onView(isRoot()).perform(waitForView(id, 5000));
+        onView(isRoot()).perform(waitDisplayed(id, 5000));
     }
 }

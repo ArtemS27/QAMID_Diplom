@@ -3,7 +3,6 @@ package ru.iteco.fmhandroid.ui.tests;
 
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
 import org.junit.Before;
@@ -75,5 +74,4 @@ public class SwitchTabsTests {
         switchTabs.goToOurMissionPage();
         switchTabs.checkOurMissionPage();
     }
-
 }

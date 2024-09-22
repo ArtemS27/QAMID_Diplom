@@ -94,14 +94,22 @@ public class AppElements {
                             0),
                     isDisplayed()));
 
+    public int allNewsButtonId = R.id.all_news_text_view;
+
+    public ViewInteraction hideNewsButton = onView(withId(R.id.expand_material_button));
+
     public ViewInteraction newsExpandingButton = onView(
             allOf(withId(R.id.news_list_recycler_view),
                     childAtPosition(
                             withId(R.id.all_news_cards_block_constraint_layout),
                             0)));
 
-    public ViewInteraction newsTextElement = onView(
-            anyOf(withId(R.id.news_item_description_text_view)));
+    public int descriptionTextId = R.id.news_item_description_text_view;
+
+    public ViewInteraction descriptionText = onView(allOf(withId(descriptionTextId),
+            withParent(withParent(withId(R.id.news_item_material_card_view))),
+            isDisplayed()));
+
 
     private static Matcher<View> childAtPosition(
             final Matcher<View> parentMatcher, final int position) {

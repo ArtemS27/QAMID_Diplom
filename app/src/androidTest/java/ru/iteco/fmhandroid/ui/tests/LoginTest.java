@@ -2,7 +2,6 @@ package ru.iteco.fmhandroid.ui.tests;
 
 import androidx.test.filters.LargeTest;
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 
 import org.junit.Before;
@@ -62,6 +61,13 @@ public class LoginTest {
     public void loginWithInvalidPassword() {
         loginTest.LoginTest(data.validLogin, data.invalidPassword);
         decorView.checkMessage(data.invalidLoginOrPasswordMessage);
+    }
+
+    @Test
+    @DisplayName("Login with login and password in cyrillic")
+    public void loginWithCyrillicSymbols() {
+        loginTest.LoginTest(data.loginInCyrillic, data.passwordInCyrillic);
+        decorView.checkMessage(data.emptyFieldsMessage);
     }
 
     }

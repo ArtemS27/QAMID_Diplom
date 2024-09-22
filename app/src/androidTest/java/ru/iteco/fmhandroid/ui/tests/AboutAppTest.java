@@ -1,7 +1,6 @@
 package ru.iteco.fmhandroid.ui.tests;
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule;
-import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 
 import org.junit.Before;
@@ -13,10 +12,7 @@ import io.qameta.allure.android.runners.AllureAndroidJUnit4;
 import io.qameta.allure.kotlin.junit4.DisplayName;
 import ru.iteco.fmhandroid.ui.AppActivity;
 import ru.iteco.fmhandroid.ui.data.Data;
-import ru.iteco.fmhandroid.ui.elements.MainTabElements;
-import ru.iteco.fmhandroid.ui.elements.NewsTabElements;
 import ru.iteco.fmhandroid.ui.pageobjects.AboutPage;
-import ru.iteco.fmhandroid.ui.pageobjects.EditNews;
 import ru.iteco.fmhandroid.ui.pageobjects.Login;
 import ru.iteco.fmhandroid.ui.pageobjects.SwitchTabs;
 

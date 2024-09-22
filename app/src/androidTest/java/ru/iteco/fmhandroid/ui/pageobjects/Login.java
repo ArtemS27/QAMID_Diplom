@@ -10,6 +10,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.*;
 
 import static ru.iteco.fmhandroid.ui.data.WaitObjectDisplayed.waitId;
 
+import io.qameta.allure.kotlin.Allure;
 import io.qameta.allure.kotlin.Step;
 import ru.iteco.fmhandroid.R;
 import ru.iteco.fmhandroid.ui.data.DecorView;
@@ -21,6 +22,7 @@ public class Login {
     AuthElements authElements = new AuthElements();
     @Step("Login")
     public void LoginTest(String login, String password) {
+        Allure.step("Log in");
         waitId(R.id.enter_button);
 
         authElements.logInElement.check(matches(isDisplayed()));
@@ -33,11 +35,12 @@ public class Login {
     }
     @Step("Check Login")
     public void CheckIfLoggedIn() {
+        Allure.step("Check if logged in");
         waitId(R.id.authorization_image_button);
     }
     @Step("Logout if Logged in")
     public void LogOutIfLoggedIn() {
-
+        Allure.step("Logout if logged in");
         if(loggedIn()) {
             LogOut logOut = new LogOut();
             logOut.LogOutTest();

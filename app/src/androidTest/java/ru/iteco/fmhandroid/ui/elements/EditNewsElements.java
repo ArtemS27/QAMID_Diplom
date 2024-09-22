@@ -30,6 +30,6 @@ public class EditNewsElements {
     public ViewInteraction timeField = onView(withId(R.id.news_item_publish_time_text_input_edit_text));
     public ViewInteraction descriptionField = onView(withId(R.id.news_item_description_text_input_edit_text));
     public ViewInteraction saveButton = onView(withId(R.id.save_button));
-    public ViewInteraction okButton = onView(allOf(withId(android.R.id.button1)));
+    public ViewInteraction okButton = onView(withText("OK"));
 
 }

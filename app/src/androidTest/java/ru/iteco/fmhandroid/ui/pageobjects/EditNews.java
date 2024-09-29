@@ -11,6 +11,7 @@ import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
 
 import static org.hamcrest.Matchers.allOf;
+import static ru.iteco.fmhandroid.ui.data.WaitObjectDisplayed.waitDisplayed;
 import static ru.iteco.fmhandroid.ui.data.WaitObjectDisplayed.waitId;
 import static ru.iteco.fmhandroid.ui.data.ClickChildViewWithId.clickChildWithId;
 
@@ -81,15 +82,16 @@ public class EditNews {
     @Step("Confirm delete")
     public void ClickOkButton() {
         Allure.step("Click 'OK' in the message");
-        waitId(editNewsElements.okButtonId);
+        //waitId(editNewsElements.okButtonId);
+        //  waitDisplayed(editNewsElements.okButtonId, 5000);
         SystemClock.sleep(1000);
         editNewsElements.okButton.perform(click());
-        SystemClock.sleep(1000);
     }
 
     @Step("Check if the news is deleted")
     public void CheckIfTheNewsDeleted(String title) {
         Allure.step("Check if the news is deleted");
+        SystemClock.sleep(1000);
         onView(allOf(withText(title), isDisplayed())).check(doesNotExist());
     }
 
